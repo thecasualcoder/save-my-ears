@@ -12,7 +12,10 @@
 UInt32 activeDataSource(AudioDeviceID deviceId, AudioObjectPropertyAddress dataSourceAddr) {
     UInt32 dataSourceId = 0;
     UInt32 dataSourceIdSize = sizeof(UInt32);
-    AudioObjectGetPropertyData(deviceId, &dataSourceAddr, 0, NULL, &dataSourceIdSize, &dataSourceId);
+    OSStatus status = AudioObjectGetPropertyData(deviceId, &dataSourceAddr, 0, NULL, &dataSourceIdSize, &dataSourceId);
+    if (status != kAudioHardwareNoError) {
+        printf("Failed to get data source ID. OSStatus: %d", status);
+    }
     
     return dataSourceId;
 }
@@ -57,7 +60,10 @@ int main(int argc, const char * argv[]) {
         kAudioObjectPropertyScopeGlobal,
         kAudioObjectPropertyElementMaster
     };
-    AudioObjectGetPropertyData(kAudioObjectSystemObject, &defaultDeviceAddr, 0, NULL, &defaultSize, &defaultDevice);
+    OSStatus status = AudioObjectGetPropertyData(kAudioObjectSystemObject, &defaultDeviceAddr, 0, NULL, &defaultSize, &defaultDevice);
+    if (status != kAudioHardwareNoError) {
+        printf("Failed to get device ID. OSStatus: %d", status);
+    }
     
     AudioObjectPropertyAddress dataSourceAddr;
     dataSourceAddr.mSelector = kAudioDevicePropertyDataSource;

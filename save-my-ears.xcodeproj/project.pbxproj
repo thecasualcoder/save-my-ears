@@ -24,7 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6B3671672278B14100094A2C /* save-my-ears */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "save-my-ears"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B3671672278B14100094A2C /* save-my-ears-debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "save-my-ears-debug"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B36716A2278B14100094A2C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B3671722278B17D00094A2C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -53,7 +53,7 @@
 		6B3671682278B14100094A2C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6B3671672278B14100094A2C /* save-my-ears */,
+				6B3671672278B14100094A2C /* save-my-ears-debug */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,7 +91,7 @@
 			);
 			name = "save-my-ears";
 			productName = "save-my-ears";
-			productReference = 6B3671672278B14100094A2C /* save-my-ears */;
+			productReference = 6B3671672278B14100094A2C /* save-my-ears-debug */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -252,7 +252,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)-debug";
 			};
 			name = Debug;
 		};

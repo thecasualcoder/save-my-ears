@@ -50,8 +50,12 @@ void setVolume(AudioDeviceID deviceId, Float32 volume) {
 }
 
 int main(int argc, const char * argv[]) {
+    const char APP_NAME[] = "save-my-ears";
+    const char APP_VERSION[] = "v0.0.1";
     const Float32 DEFAULT_VOLUME = 0.25;
     
+    printf("App: %s Version: %s\n", APP_NAME, APP_VERSION);
+
     // Get default output device address
     AudioDeviceID defaultDevice = 0;
     UInt32 defaultSize = sizeof(AudioDeviceID);

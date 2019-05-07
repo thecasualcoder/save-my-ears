@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+dir=${1:-$HOME/save-my-ears}
+
+tar -cvzf $dir.tar.gz -C $dir/Products .
+

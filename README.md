@@ -2,4 +2,10 @@
 
 Launch agent that resets volume to 25% whenever a headphone/earphone is connected to your Mac.
 
-## Work in Progress
+## Install
+
+```
+brew tap thecasualcoder/stable
+brew install save-my-ears
+brew services start save-my-ears
+```

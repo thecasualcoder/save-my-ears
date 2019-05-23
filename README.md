@@ -1,6 +1,6 @@
 # save-my-ears
 
-Launch agent that resets volume to 25% whenever a headphone/earphone is connected to your Mac.
+Launch agent that resets volume to a lower value whenever a headphone/earphone is connected to your Mac.
 
 ### Why? and How?
 

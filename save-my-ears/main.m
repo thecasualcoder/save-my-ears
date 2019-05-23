@@ -16,36 +16,36 @@ UInt32 activeDataSource(AudioDeviceID deviceId, AudioObjectPropertyAddress dataS
     if (status != kAudioHardwareNoError) {
         NSLog(@"Failed to get data source ID. OSStatus: %d", status);
     }
-    
+
     return dataSourceId;
 }
 
 void setVolume(AudioDeviceID deviceId, Float32 volume) {
     UInt32 volumeSize = sizeof(Float32);
     OSStatus status;
-    
+
     AudioObjectPropertyAddress leftVolumePropertyAddr = {
         kAudioDevicePropertyVolumeScalar,
         kAudioDevicePropertyScopeOutput,
         1 /*LEFT_CHANNEL*/
     };
-    
+
     AudioObjectPropertyAddress rightVolumePropertyAddr = {
         kAudioDevicePropertyVolumeScalar,
         kAudioDevicePropertyScopeOutput,
         2 /*RIGHT_CHANNEL*/
     };
-    
+
     status = AudioObjectSetPropertyData(deviceId, &leftVolumePropertyAddr, 0, NULL, volumeSize, &volume);
     if (status != kAudioHardwareNoError) {
         NSLog(@"Failed to set left channel volume. OSStatus: %d", status);
     }
-    
+
     status = AudioObjectSetPropertyData(deviceId, &rightVolumePropertyAddr, 0, NULL, volumeSize, &volume);
     if (status != kAudioHardwareNoError) {
         NSLog(@"Failed to set right channel volume. OSStatus: %d", status);
     }
-    
+
     NSLog(@"Set volume to %.0f%%", (volume * 100));
 }
 
@@ -53,7 +53,7 @@ int main(int argc, const char * argv[]) {
     const char APP_NAME[] = "save-my-ears";
     const char APP_VERSION[] = "v0.0.1";
     const Float32 DEFAULT_VOLUME = 0.25;
-    
+
     NSLog(@"App: %s Version: %s", APP_NAME, APP_VERSION);
 
     // Get default output device address
@@ -68,12 +68,12 @@ int main(int argc, const char * argv[]) {
     if (status != kAudioHardwareNoError) {
         NSLog(@"Failed to get device ID. OSStatus: %d", status);
     }
-    
+
     AudioObjectPropertyAddress dataSourceAddr;
     dataSourceAddr.mSelector = kAudioDevicePropertyDataSource;
     dataSourceAddr.mScope = kAudioDevicePropertyScopeOutput;
     dataSourceAddr.mElement = kAudioObjectPropertyElementMaster;
-    
+
     // Listen to changes in the device
     AudioObjectAddPropertyListenerBlock(defaultDevice, &dataSourceAddr, nil, ^(UInt32 inNumberAddr, const AudioObjectPropertyAddress *inAddr) {
         // Get the active data source
@@ -85,6 +85,6 @@ int main(int argc, const char * argv[]) {
             setVolume(defaultDevice, DEFAULT_VOLUME);
         }
     });
-    
+
     CFRunLoopRun();
 }
